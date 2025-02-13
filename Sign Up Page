@@ -1,0 +1,111 @@
+@model Task_Manager_MVC.Models.User
+
+@{
+    ViewData["Title"] = "Sign Up";
+}
+
+<style>
+    body {
+         height: 100%; 
+        margin: 0;
+        padding: 0;
+        background: linear-gradient(to bottom right, #1A1443, #6C42C7);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    html{
+        margin: 0;
+        padding: 0;
+        /* background: linear-gradient(to bottom right, #1A1443, #6C42C7); */
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .signup-card {
+        background: rgba(45, 27, 104, 0.9);
+        border-radius: 15px;
+        padding: 30px;
+        width: 350px;
+        box-shadow: 0 0 20px rgba(255, 255, 255, 0.2);
+    }
+
+        .signup-card h3 {
+            text-align: center;
+            color: white;
+            margin-bottom: 20px;
+        }
+
+    .form-control {
+        background: rgba(255, 255, 255, 0.2);
+        border: none;
+        border-bottom: 2px solid white;
+        color: white;
+        outline: none;
+        box-shadow: none;
+        padding: 10px;
+        border-radius: 5px;
+    }
+
+        .form-control::placeholder {
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+    .btn-signup {
+        background: #6C42C7;
+        color: white;
+        width: 100%;
+        padding: 10px;
+        border-radius: 20px;
+        font-weight: bold;
+        transition: background 0.3s ease;
+    }
+
+        .btn-signup:hover {
+            background: #5A32B6;
+        }
+
+    .login-link {
+        color: white;
+        text-align: center;
+        display: block;
+        margin-top: 15px;
+        text-decoration: none;
+        font-weight: bold;
+    }
+</style>
+
+<div class="signup-card">
+    <h3>Sign up</h3>
+
+    <form asp-action="Register" method="post">
+        <div asp-validation-summary="ModelOnly" class="alert alert-danger"></div>
+
+        <div class="form-group mb-3">
+            <input asp-for="Username" class="form-control" type="text" placeholder="User name" required />
+            <span asp-validation-for="Username" class="text-danger"></span>
+        </div>
+
+        <div class="form-group mb-3">
+            <input asp-for="Email" class="form-control" type="email" placeholder="Email" required />
+            <span asp-validation-for="Email" class="text-danger"></span>
+        </div>
+
+        <div class="form-group mb-3">
+            <input asp-for="PasswordHash" class="form-control" type="password" placeholder="Password" required />
+            <span asp-validation-for="PasswordHash" class="text-danger"></span>
+        </div>
+
+        <button type="submit" class="btn btn-signup">Sign up</button>
+    </form>
+
+    <a asp-action="Login" class="login-link">Already have an account? Login</a>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}
